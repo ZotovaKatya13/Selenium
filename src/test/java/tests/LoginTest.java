@@ -3,9 +3,6 @@ package tests;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 
-import static com.codeborne.selenide.Selenide.open;
-
-
 public class LoginTest extends BaseTest{
 
     LoginPage loginPage = new LoginPage();
