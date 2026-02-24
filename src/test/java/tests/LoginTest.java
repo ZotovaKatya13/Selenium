@@ -9,8 +9,9 @@ public class LoginTest extends BaseTest{
 
     @Test
     public void loginWithValidCreds(){
-       loginPage.usernameField.setValue("admin");
+       loginPage.usernameField.setValue("Admin");
        loginPage.passwordField.setValue("admin123");
        loginPage.loginButton.click();
+
     }
 }
