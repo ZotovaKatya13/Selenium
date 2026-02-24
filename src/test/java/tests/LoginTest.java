@@ -12,5 +12,6 @@ public class LoginTest extends BaseTest{
        loginPage.usernameField.setValue("Admin");
        loginPage.passwordField.setValue("admin123");
        loginPage.loginButton.click();
+
     }
 }

@@ -12,5 +12,6 @@ open("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
     @AfterTest
 public void tearDown(){
 
+
     }
 }
