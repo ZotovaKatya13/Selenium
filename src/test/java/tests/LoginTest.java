@@ -1,7 +1,7 @@
 package tests;
 
-import org.testng.annotations.Test;
 import pages.LoginPage;
+import org.testng.annotations.Test;
 
 public class LoginTest extends BaseTest{
 
@@ -9,7 +9,6 @@ public class LoginTest extends BaseTest{
 
     @Test
     public void loginWithValidCreds(){
-        // test
        loginPage.usernameField.setValue("admin");
        loginPage.passwordField.setValue("admin123");
        loginPage.loginButton.click();

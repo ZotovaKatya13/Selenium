@@ -1,4 +1,4 @@
 package tests;
 
-public class AdminTest {
+public class AdminTest extends BaseTest {
 }
