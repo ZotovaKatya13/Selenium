@@ -4,6 +4,8 @@ import com.codeborne.selenide.Condition;
 import org.openqa.selenium.Keys;
 import org.testng.annotations.Test;
 
+import java.time.Duration;
+
 public class LeaveTest extends BaseTest{
     @Test
     public void invalidImployNameSearch(){
@@ -22,7 +24,7 @@ public class LeaveTest extends BaseTest{
         app.leavePage.searchButton.click();
         // проверить ошибку
         app.leavePage.errorMessage.shouldBe(Condition.exist); // объект есть в дом модели но не видим
-        app.leavePage.errorMessage.shouldBe(Condition.visible);
+        app.leavePage.errorMessage.shouldBe(Condition.visible, Duration.ofSeconds(10)); // ожидание
     }
 
 }
