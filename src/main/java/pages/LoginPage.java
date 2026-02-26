@@ -17,7 +17,7 @@ public class LoginPage {
         // usernameField должен иметь точное значение логина
         usernameField.shouldHave(Condition.exactValue(login));
         passwordField.setValue(password);
-        usernameField.shouldHave(Condition.exactValue(password));
+        passwordField.shouldHave(Condition.exactValue(password));
         loginButton.click();
     }
 

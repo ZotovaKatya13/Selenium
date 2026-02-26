@@ -1,9 +1,6 @@
 package utils;
 
-import pages.AdminPage;
-import pages.BasePage;
-import pages.LeavePage;
-import pages.LoginPage;
+import pages.*;
 
 public class App  extends BasePage {
 
@@ -11,4 +8,5 @@ public class App  extends BasePage {
    public AdminPage adminPage = new AdminPage();
    public UserCredentials userCreds = new UserCredentials();
    public LeavePage leavePage = new LeavePage();
+   public PIMPage pimTest = new PIMPage();
 }
