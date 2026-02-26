@@ -17,7 +17,6 @@ public class PIMPage extends BasePage{
     // локатор кнопки Search
     public SelenideElement searchButton = $(By.xpath("//button[@type='submit']"));
     // локатор результата поиска
-   // public SelenideElement result = $(By.xpath("//span[text()='(1) Record Found']"));
     public SelenideElement result = $(By.xpath("(//span[@class='oxd-text oxd-text--span'])[1]"));
     // кнопка Reset
     public SelenideElement resetButton = $(By.xpath("//button[@type='reset']"));
@@ -38,7 +37,4 @@ public class PIMPage extends BasePage{
     public SelenideElement FirstNameSearchResult = $(By.xpath("(//div[@class='oxd-table-cell oxd-padding-cell'])[3]"));
     // локатор Last Name в результате поиска
     public SelenideElement LastNameSearchResult = $(By.xpath("(//div[@class='oxd-table-cell oxd-padding-cell'])[4]"));
-
-    // локатор Employee id
-   // public SelenideElement employeeId = $(By.xpath(""));
 }

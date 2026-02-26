@@ -9,7 +9,6 @@ import java.time.Duration;
 public class PIMTest extends BaseTest{
 
     @Test
-
     public void validImployeeNameSearch() {
         Configuration.pageLoadTimeout = 20000; // 20 секунд
         app.loginPage.login(app.userCreds.adminLogin, app.userCreds.adminPassword);

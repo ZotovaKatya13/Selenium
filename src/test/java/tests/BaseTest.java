@@ -17,8 +17,8 @@ public void setup(){
 open("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
     }
 
-//    @AfterMethod
-//public void tearDown(){
-//        closeWebDriver();
-//    }
+    @AfterMethod
+public void tearDown(){
+        closeWebDriver();
+    }
 }
