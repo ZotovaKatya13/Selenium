@@ -10,7 +10,6 @@ public class PIMPage extends BasePage{
     // локатор раздела MIM
     public SelenideElement PIMTab = $(By.xpath("(//span[@class='oxd-text oxd-text--span oxd-main-menu-item--name'])[2]"));
     // локатор поля EmployeeName
-    //public SelenideElement employeeNameField = $(By.xpath("(//div[@class='oxd-autocomplete-text-input oxd-autocomplete-text-input--active'])[1]"));
     public SelenideElement employeeNameField = $(By.xpath("(//input[@placeholder='Type for hints...'])[1]"));
     // локатор поля EmployeeId
     public SelenideElement employeeIdField = $(By.xpath("(//input[@class='oxd-input oxd-input--active'])[2]"));
