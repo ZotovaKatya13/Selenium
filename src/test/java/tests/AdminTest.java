@@ -4,13 +4,16 @@ import org.testng.annotations.Test;
 import pages.AdminPage;
 import pages.LoginPage;
 
+import static com.codeborne.selenide.Selenide.page;
+
 public class AdminTest extends BaseTest {
 
     @Test
     public void searchAdmin() {
         app.loginPage.login(app.userCreds.adminLogin, app.userCreds.adminPassword);
-        app.adminPage.adminTab.click();
-        app.adminPage.usernameField.setValue("Admin");
-        app.adminPage.searchButton.click();
+        app.sideMenu.openTab("admin");
+//        page(AdminPage.class).openAdminTab();
+//        app.adminPage.adminTab.click();
+        app.adminPage.searchByUsername("Admin");
     }
 }

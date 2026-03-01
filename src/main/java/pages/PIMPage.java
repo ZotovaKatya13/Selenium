@@ -1,7 +1,10 @@
 package pages;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
+
+import java.time.Duration;
 
 import static com.codeborne.selenide.Selenide.$;
 
@@ -36,4 +39,20 @@ public class PIMPage extends BasePage{
     public SelenideElement FirstNameSearchResult = $(By.xpath("(//div[@class='oxd-table-cell oxd-padding-cell'])[3]"));
     // локатор Last Name в результате поиска
     public SelenideElement LastNameSearchResult = $(By.xpath("(//div[@class='oxd-table-cell oxd-padding-cell'])[4]"));
+
+    public void searchByUser(String username){
+        employeeNameField.setValue(username);
+        searchButton.click();
+    }
+    public void checkExpectedResultRows(int expectedRows){
+        result.shouldBe(Condition.visible); // ждет пока элемент станет видимым
+        result.shouldHave(Condition.exactText("(" + expectedRows + ") Record Found"));
+    }
+    public void resetButtonClick(){
+        resetButton.click();
+    }
+    public void checkThatEmployeeNameIsEmpty(){
+        employeeNameField.shouldBe(Condition.visible, Duration.ofSeconds(10));
+        employeeNameField.shouldBe(Condition.empty);
+    }
 }
