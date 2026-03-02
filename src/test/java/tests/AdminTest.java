@@ -4,6 +4,7 @@ import org.testng.annotations.Test;
 import pages.AdminPage;
 import pages.LoginPage;
 
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.page;
 
 public class AdminTest extends BaseTest {
@@ -15,5 +16,10 @@ public class AdminTest extends BaseTest {
 //        page(AdminPage.class).openAdminTab();
 //        app.adminPage.adminTab.click();
         app.adminPage.searchByUsername("Admin");
+    }
+    @Test
+    public void testDropDown() {
+       app.adminPage.usernameField.click();
+       app.adminPage.usernameField.getWrappedElement().findElement(byText("Москва")).click();
     }
 }
