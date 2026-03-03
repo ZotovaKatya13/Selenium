@@ -10,6 +10,7 @@ public class AdminPage  {
     public SelenideElement usernameField = $(By.xpath("//form//input[@class='oxd-input oxd-input--active']"));
     // private SelenideElement searchButton = $(By.xpath("//button[@type='submit']"));
     public SelenideElement searchButton = $(By.xpath("//button[@type='submit']"));
+    public SelenideElement adminTab = $(By.xpath("(//span[@class='oxd-text oxd-text--span oxd-main-menu-item--name'])[1]"));
 
     public void searchByUsername(String username) {
         usernameField.setValue(username);
