@@ -10,4 +10,5 @@ public class App extends BasePage {
    public LeavePage leavePage = new LeavePage();
    public PIMPage pimPage = new PIMPage();
    public SideMenu sideMenu = new SideMenu();
+   public MyinfoPage myinfoPage = new MyinfoPage();
 }
