@@ -16,4 +16,6 @@ public class MyinfoPage {
     public SelenideElement downDrop = $(By.xpath("//div[@role='listbox']"));
     public SelenideElement nationalityFieldActive = $(By.xpath("(//div[@class='oxd-select-text-input'])[1]"));
     public SelenideElement maritalStatusField = $(By.xpath("(//div[@class='oxd-select-text oxd-select-text--active'])[2]"));
+    public SelenideElement selectStatus = $(By.xpath("(//div[contains(text(),'Select')])[2]"));
+    public SelenideElement checkStatus = $(By.xpath("(//div[contains(text(),'Enabled')])[2]"));
 }

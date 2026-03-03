@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.time.Duration;
 import java.time.LocalDate;
 
 import static com.codeborne.selenide.Condition.disappear;
@@ -91,5 +92,22 @@ public class MyInfoTest extends BaseTest {
         app.myinfoPage.maritalStatusField.click();
         app.myinfoPage.downDrop.getWrappedElement().findElement(byText("Married")).click();
         app.myinfoPage.nationalityFieldActive.shouldHave(Condition.exactText("Married"));
+    }
+    // Автоматизировать тест-кейс для проверки фильтрации
+    @Test
+    public void searchByFilter() {
+        app.loginPage.login(app.userCreds.adminLogin, app.userCreds.adminPassword);
+        app.adminPage.adminTab.shouldBe(Condition.visible, Duration.ofSeconds(10));
+        app.sideMenu.openTab("admin");
+        app.adminPage.usernameField.setValue("admin");
+        app.myinfoPage.selectStatus.click();
+        app.myinfoPage.downDrop.getWrappedElement().findElement(byText("Enabled")).click();
+        app.adminPage.userRoleButton.click();
+        app.myinfoPage.downDrop.getWrappedElement().findElement(byText("Admin")).click();
+        app.adminPage.searchButton.click();
+        // проверить результат поиска по имени
+        app.pimPage.result.shouldBe(Condition.visible);
+        app.pimPage.result.shouldHave(Condition.exactText("(1) Record Found"));
+        app.myinfoPage.checkStatus.shouldHave(Condition.exactText("Enabled"));
     }
 }
