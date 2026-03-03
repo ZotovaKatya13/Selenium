@@ -41,6 +41,5 @@ public class AdminTest extends BaseTest {
         app.adminPage.userRoleDropDown.getWrappedElement().findElement(byText("Admin")).click();
         app.adminPage.userRoleButton.shouldHave(Condition.exactText("Admin"));
         app.adminPage.searchButton.click();
-
     }
 }

@@ -5,10 +5,10 @@ import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class AdminPage  {
- //   private SelenideElement usernameField = $(By.xpath("//form//input[@class='oxd-input oxd-input--active']"));
+public class AdminPage {
+    //   private SelenideElement usernameField = $(By.xpath("//form//input[@class='oxd-input oxd-input--active']")); для метода
+    // private SelenideElement searchButton = $(By.xpath("//button[@type='submit']")); для метода
     public SelenideElement usernameField = $(By.xpath("//form//input[@class='oxd-input oxd-input--active']"));
-    // private SelenideElement searchButton = $(By.xpath("//button[@type='submit']"));
     public SelenideElement searchButton = $(By.xpath("//button[@type='submit']"));
     public SelenideElement adminTab = $(By.xpath("(//span[@class='oxd-text oxd-text--span oxd-main-menu-item--name'])[1]"));
 

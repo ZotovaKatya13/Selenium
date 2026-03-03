@@ -12,7 +12,6 @@ import org.testng.annotations.Test;
 public class LoginTest extends BaseTest {
 
    // LoginPage loginPage = new LoginPage();
-
     @Test
     @Tag("smoke")
     @Link("12345")

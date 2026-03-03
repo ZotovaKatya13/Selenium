@@ -26,6 +26,7 @@ public class LoginPage {
         passwordField.shouldHave(Condition.exactValue(password));
         loginButton.click();
 //        return new AdminPage();
+
     }
 
 }
