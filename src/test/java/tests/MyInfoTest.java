@@ -1,12 +1,13 @@
 package tests;
 
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Description;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.io.File;
 import java.time.Duration;
 import java.time.LocalDate;
 
@@ -18,12 +19,11 @@ import static com.codeborne.selenide.Selenide.executeJavaScript;
 public class MyInfoTest extends BaseTest {
 
     @Test
+    @Description("проверка на то, что поле заполнилось датой после нажатия Today в календаре")
     public void installDateInCalendarDropDown() {
         app.loginPage.login(app.userCreds.adminLogin, app.userCreds.adminPassword);
         app.sideMenu.openTab("MyDetails");
-        // кликнуть по элементу календаря
         app.myinfoPage.licenseExpiryDateField.click();
-        // нажать сегодня
         app.myinfoPage.calendarDownDrop.getWrappedElement().findElement(byText("Today")).click();
         // проверить что поле заполнилось сегодняшней датой
         SelenideElement calendar = $(By.xpath("(//input[@placeholder='yyyy-dd-mm'])[1]"));
@@ -40,30 +40,25 @@ public class MyInfoTest extends BaseTest {
     }
 
     @Test
+    @Description("проверка на то, что календарь закрылся после нажатия Close в календаре")
     public void checkCloseCalendarDropDown(){
         app.loginPage.login(app.userCreds.adminLogin, app.userCreds.adminPassword);
         app.sideMenu.openTab("MyDetails");
-        // кликнуть по элементу календаря
         app.myinfoPage.licenseExpiryDateField.click();
-        // нажать сегодня
         app.myinfoPage.calendarDownDrop.getWrappedElement().findElement(byText("Today")).click();
         app.myinfoPage.licenseExpiryDateField.click();
-        // кликнуть на Close в календаре
         app.myinfoPage.calendarDownDrop.getWrappedElement().findElement(byText("Close")).click();
-        // проверка что календарь закрылся
         app.myinfoPage.calendarDownDrop.should(disappear);
     }
 
     @Test
+    @Description("проверка на то, что поле с датой очистилось после нажатия Clear в календаре")
     public void checkFieldClear(){
         app.loginPage.login(app.userCreds.adminLogin, app.userCreds.adminPassword);
         app.sideMenu.openTab("MyDetails");
-        // кликнуть по элементу календаря
         app.myinfoPage.licenseExpiryDateField.click();
-        // нажать сегодня
         app.myinfoPage.calendarDownDrop.getWrappedElement().findElement(byText("Today")).click();
         app.myinfoPage.licenseExpiryDateField.click();
-        // кликнуть на Close в календаре
         app.myinfoPage.calendarDownDrop.getWrappedElement().findElement(byText("Clear")).click();
         SelenideElement calendar = $(By.xpath("(//input[@placeholder='yyyy-dd-mm'])[1]"));
         // получаем значение свойства value через JS
@@ -77,6 +72,7 @@ public class MyInfoTest extends BaseTest {
     }
 
     @Test
+    @Description("проверка селектора Nationality")
     public void checkDropDownNationality(){
         app.loginPage.login(app.userCreds.adminLogin, app.userCreds.adminPassword);
         app.sideMenu.openTab("MyDetails");
@@ -86,6 +82,7 @@ public class MyInfoTest extends BaseTest {
     }
 
     @Test
+    @Description("проверка селектора maritalStatus")
     public void checkDropDownCountry(){
         app.loginPage.login(app.userCreds.adminLogin, app.userCreds.adminPassword);
         app.sideMenu.openTab("MyDetails");
@@ -93,8 +90,9 @@ public class MyInfoTest extends BaseTest {
         app.myinfoPage.downDrop.getWrappedElement().findElement(byText("Married")).click();
         app.myinfoPage.nationalityFieldActive.shouldHave(Condition.exactText("Married"));
     }
-    // Автоматизировать тест-кейс для проверки фильтрации
+
     @Test
+    @Description("проверка фильтрации")
     public void searchByFilter() {
         app.loginPage.login(app.userCreds.adminLogin, app.userCreds.adminPassword);
         app.adminPage.adminTab.shouldBe(Condition.visible, Duration.ofSeconds(10));
@@ -109,5 +107,15 @@ public class MyInfoTest extends BaseTest {
         app.pimPage.result.shouldBe(Condition.visible);
         app.pimPage.result.shouldHave(Condition.exactText("(1) Record Found"));
         app.myinfoPage.checkStatus.shouldHave(Condition.exactText("Enabled"));
+    }
+
+    @Test
+    @Description("проверка, что файл скачался")
+    public void downloadFile(){
+        app.loginPage.login(app.userCreds.adminLogin, app.userCreds.adminPassword);
+        app.sideMenu.openTab("MyDetails");
+        File file = $("button:has(i.bi-download)").download();
+        Assert.assertTrue(file.exists());
+        Assert.assertTrue(file.length() > 0);
     }
 }
