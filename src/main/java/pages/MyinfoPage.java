@@ -19,4 +19,5 @@ public class MyinfoPage {
     public SelenideElement selectStatus = $(By.xpath("(//div[contains(text(),'Select')])[2]"));
     public SelenideElement checkStatus = $(By.xpath("(//div[contains(text(),'Enabled')])[2]"));
     public SelenideElement buttonDownload = $(By.xpath("//button[.//i[contains(@class,'bi-download')]]"));
+    public SelenideElement Actual = $(By.xpath("(//input[@placeholder='yyyy-dd-mm'])[1]"));
 }

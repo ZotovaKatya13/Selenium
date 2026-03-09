@@ -8,13 +8,17 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.io.File;
+import java.text.DateFormat;
 import java.time.Duration;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import static com.codeborne.selenide.Condition.disappear;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.executeJavaScript;
+import static org.testng.AssertJUnit.*;
 
 public class MyInfoTest extends BaseTest {
 
@@ -23,20 +27,15 @@ public class MyInfoTest extends BaseTest {
     public void installDateInCalendarDropDown() {
         app.loginPage.login(app.userCreds.adminLogin, app.userCreds.adminPassword);
         app.sideMenu.openTab("MyDetails");
-        app.myinfoPage.licenseExpiryDateField.click();
+        app.myinfoPage.licenseExpiryDateField.shouldBe(visible, Duration.ofSeconds(20)).click();
         app.myinfoPage.calendarDownDrop.getWrappedElement().findElement(byText("Today")).click();
         // проверить что поле заполнилось сегодняшней датой
-        SelenideElement calendar = $(By.xpath("(//input[@placeholder='yyyy-dd-mm'])[1]"));
-        String dateString = executeJavaScript("return arguments[0].value;", calendar);
-        // преобразуем в LocalDate для сравнения
-        LocalDate selectedDate = LocalDate.parse(dateString); // если dateString в формате YYYY-MM-DD
+        app.myinfoPage.licenseExpiryDateField.shouldBe(Condition.visible, Duration.ofSeconds(10));
+        String actualDate = app.myinfoPage.licenseExpiryDateField.getValue();
         // проверяем
-        LocalDate expectedDate = LocalDate.of(2026, 3, 3);
-        if (selectedDate.equals(expectedDate)) {
-            System.out.println("Дата выбрана верно");
-        } else {
-            System.out.println("Дата НЕ верна");
-        }
+        String expectedDate = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-dd-MM"));
+        assertEquals("Дата заполнилась неверно.\n Expected: " + expectedDate + "\nActual: " + actualDate,
+                expectedDate, actualDate);
     }
 
     @Test
@@ -56,19 +55,14 @@ public class MyInfoTest extends BaseTest {
     public void checkFieldClear(){
         app.loginPage.login(app.userCreds.adminLogin, app.userCreds.adminPassword);
         app.sideMenu.openTab("MyDetails");
+        app.myinfoPage.licenseExpiryDateField.shouldBe(visible, Duration.ofSeconds(20)).click();
         app.myinfoPage.licenseExpiryDateField.click();
         app.myinfoPage.calendarDownDrop.getWrappedElement().findElement(byText("Today")).click();
         app.myinfoPage.licenseExpiryDateField.click();
         app.myinfoPage.calendarDownDrop.getWrappedElement().findElement(byText("Clear")).click();
-        SelenideElement calendar = $(By.xpath("(//input[@placeholder='yyyy-dd-mm'])[1]"));
+        String actualDate = app.myinfoPage.licenseExpiryDateField.getValue();
         // получаем значение свойства value через JS
-        String dateString = executeJavaScript("return arguments[0].value;", calendar);
-        // проверяем, что поле пустое
-        if(dateString == null || dateString.isEmpty()) {
-            System.out.println("Поле календаря очищено");
-        } else {
-            System.out.println("Поле календаря НЕ пустое, значение: " + dateString);
-        }
+        assertTrue("Поле не пустое", actualDate.isEmpty());
     }
 
     @Test
