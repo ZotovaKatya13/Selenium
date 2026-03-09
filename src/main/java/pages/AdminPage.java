@@ -20,5 +20,4 @@ public class AdminPage {
     // селектор
     public SelenideElement userRoleButton = $(By.xpath("(//div[@class='oxd-select-text oxd-select-text--active'])[1]"));
     public SelenideElement userRoleDropDown = $(By.xpath("//div[@class='oxd-select-dropdown --positon-bottom']"));
-
 }

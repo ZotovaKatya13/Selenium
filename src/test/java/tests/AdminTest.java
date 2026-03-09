@@ -4,6 +4,7 @@ import com.codeborne.selenide.Condition;
 import io.qameta.allure.Description;
 import io.qameta.allure.Flaky;
 import io.qameta.allure.Issue;
+import io.qameta.allure.Severity;
 import io.qameta.allure.testng.Tag;
 import org.testng.annotations.Test;
 import pages.AdminPage;
@@ -22,6 +23,7 @@ public class AdminTest extends BaseTest {
     @Description("Поиск админа")
     @Issue("Jira 12345")
     @Tag("regression")
+    //@Severity()
     public void searchAdmin() {
         app.loginPage.login(app.userCreds.adminLogin, app.userCreds.adminPassword);
         app.sideMenu.openTab("admin");
@@ -41,5 +43,6 @@ public class AdminTest extends BaseTest {
         app.adminPage.userRoleDropDown.getWrappedElement().findElement(byText("Admin")).click();
         app.adminPage.userRoleButton.shouldHave(Condition.exactText("Admin"));
         app.adminPage.searchButton.click();
+
     }
 }
